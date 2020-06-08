@@ -11,8 +11,8 @@
 <body>
 
     <nav>
-        <div class="nav-wrapper">
-          <a href="#" class="brand-logo">ToDoLists</a>
+        <div class="nav-wrapper pink accent-1">
+          <a href="#" class="brand-logo center">ToDoLists</a>
           <!-- <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="sass.html">Sass</a></li>
             <li><a href="badges.html">Components</a></li>
@@ -20,19 +20,20 @@
           </ul> -->
         </div>
     </nav>
-    <div class="row">
-        <div class="container col s6">
-            <div class="card horizontal">
-                <div class="card-image">
-                    <!-- <i class="large material-icons">lock_outline</i> -->
-                </div>
+    <br>
+    <div class="valign-wrapper row container" style="height: 500px;">
+        <div class="container col s12 m5">
+            <div class="card horizontal hoverable deep orange lighten-4">
                 <div class="card-content">
-                    <div class="container">
+                    <!-- <div class="container"> -->
                         <form id="myForm">
                             <!-- <i class="material-icons prefix">account_circle</i> -->
-                            <input type="text" name="text" id="Username" placeholder="USERNAME" autofocus>
-                            <input type="password" name="password" id="Password" placeholder="PASSWORD" autofocus>
-                            <button id="button">Login</button>
+                                <input type="text" name="text" id="Username" placeholder="USERNAME" autofocus>
+                                <span for="Username" id="helpUname" class="helper-text"></span>
+                                <input type="password" name="password" id="Password" placeholder="PASSWORD">
+                                <span for="Password" id="helpPw" class="helper-text" ></span>
+                            <br>
+                            <button class="waves-effect waves-light btn right" id="button">Login</button>
                         </form>
                     </div>
                 </div>

@@ -12,6 +12,11 @@ $(document).ready(function() {
         $("#loader").hide().ajaxStart( () => {$(this).show();}).ajaxStop( () => {$(this).hide();});
 
         items = JSON.parse(res);
+        list = `<tr>
+                    <th style="text-align:center;">Slno</td>
+                    <th style="text-align:center;">Tasks</td>
+                    <th style="text-align:center;">Completed</td>
+                </tr>`
 
         // promise
         var promise = new Promise( (resolve,reject) => {
@@ -29,15 +34,14 @@ $(document).ready(function() {
     // Creating Table elements
     let getTable = () => {$.each(items,function(key,value) {
         if (value.completed) {
-            list1 = `<td style="border-bottom: 1px solid red;"><label><input type="checkbox" checked disabled/><span></span></label></td>`;
+            list1 = `<td style="border-bottom: 1px solid grey;text-align:center"><label><input type="checkbox" checked disabled/><span></span></label></td>`;
         }
         if(!value.completed) {
-            list1 = `<td style="border-bottom: 1px solid red;"><label><input type="checkbox"/><span></span></label></td>`;
+            list1 = `<td style="border-bottom: 1px solid grey;text-align:center"><label><input type="checkbox"/><span></span></label></td>`;
         }
         list += `<tr>
-                    <td style="border-bottom: 1px solid red;">${value.id}</td>
-                    <td style="border-bottom: 1px solid red;">${value.title}</td>
-                    <td style="border-bottom: 1px solid red;">${value.completed}</td>
+                    <td style="border-bottom: 1px solid grey;text-align:center">${value.id}</td>
+                    <td style="border-bottom: 1px solid grey;text-align:left">${value.title}</td>
                     ${list1}
                 </tr>`;
         $("#list").html(`${list}`);
@@ -45,16 +49,25 @@ $(document).ready(function() {
 
     // checking for task completions
     let taskCheck = () => {$("input").on("change", () => {
-        event.preventDefault();
         $("input:focus").prop("disabled","disabled");
         ++clicks;
-        if (clicks == 5) {
-            Swal.fire(
-                'Good job!',
-                'You\'ve completed 5 tasks.',
-                'success'
-            );
-        }
+        var promiseAlert = new Promise( (resolve,reject) => {
+            if (clicks == 5) {
+                resolve(`Congratulations!! Completed ${clicks} tasks!`);
+            }
+            else {
+                reject(`Completed ${clicks} task(s)!`)
+            }
+
+        });
+        promiseAlert
+        .then( (s) => {Swal.fire(
+                            'Good job!',
+                            'You\'ve completed 5 tasks.',
+                            'success'
+                        );console.log(s);})
+        .catch( (e) => {console.log(e)});
+
     })};
 
     getList();

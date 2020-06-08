@@ -1,30 +1,40 @@
 
     var myform = $('form');
     var form = $('#myForm > input');
-    var button = document.getElementById('button');
 
+    form.on("focus", () => {form[0].style.borderBottom = "";form[1].style.borderBottom = "";$(".helper-text").html("")});
     var login = (callback) => {
         myform.attr('action','main_page.html');
         myform.attr('onsubmit','return validate()');
         callback();
-        // form[0].style.border = "";
-        // form[1].style.border = "";
     }
 
     var validate = () => {
+        $(".helper-text").html("");
         if(form[0].value == "admin" && form[1].value == 12345) {
+            $(".helper-text").html("Good").css("color","green");
             return true;
         }
-        if(form[0].value == "" || form[1].value == "") {
-            // form[0].style.border = "1px solid red";
-            // form[1].style.border = "1px solid red";
+        if(form[0].value == "") {
+            form[0].style.borderBottom = "1px solid red";
+            $("#helpUname").html("Cannot be empty").css("color","red");
             return false;
         }
-        else {
-            // form[0].style.border = "2px solid blue";
-            // form[1].style.border = "2px solid blue";
+        if(form[1].value == "") {
+            form[1].style.borderBottom = "1px solid red";
+            $("#helpPw").html("Cannot be empty").css("color","red");
+            return false;
+        }
+        if(form[0].value !== "admin") {
+            form[0].style.borderBottom = "2px solid red";
+            $("#helpUname").html("Wrong").css("color","red");
+            return false;
+        }
+        if(form[0].value !== 12345) {
+            form[1].style.borderBottom = "2px solid red";
+            $("#helpPw").html("Wrong").css("color","red");
             return false;
         }
     }
-    // button.addEventListener('submit',login(validate));
-    login(validate);
+
+    $("button").on("click", () => login(validate));
