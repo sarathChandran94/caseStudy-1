@@ -4,18 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CaseStudy#1</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="jquery-3.5.1.js"></script>
 </head>
 <body>
 
-    <form id="myForm">
-        <label for="Username">Username</label>
-        <input type="text" name="text" id="Username" autofocus>
-        <label for="Password">Password</label>
-        <input type="password" name="password" id="Password" autofocus>
-        <button id="button">Login</button>
-    </form>
+    <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">ToDoLists</a>
+          <!-- <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="sass.html">Sass</a></li>
+            <li><a href="badges.html">Components</a></li>
+            <li><a href="collapsible.html">JavaScript</a></li>
+          </ul> -->
+        </div>
+    </nav>
+    <div class="row">
+        <div class="container col s6">
+            <div class="card horizontal">
+                <div class="card-image">
+                    <!-- <i class="large material-icons">lock_outline</i> -->
+                </div>
+                <div class="card-content">
+                    <div class="container">
+                        <form id="myForm">
+                            <!-- <i class="material-icons prefix">account_circle</i> -->
+                            <input type="text" name="text" id="Username" placeholder="USERNAME" autofocus>
+                            <input type="password" name="password" id="Password" placeholder="PASSWORD" autofocus>
+                            <button id="button">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- <div class="container">
+        <form id="myForm">
+            <label for="Username">Username</label>
+            <input type="text" name="text" id="Username" autofocus>
+            <label for="Password">Password</label>
+            <input type="password" name="password" id="Password" autofocus>
+            <button id="button">Login</button>
+        </form>
+    </div> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="index_script.js"></script>
 
 </body>
