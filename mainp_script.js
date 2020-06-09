@@ -39,7 +39,7 @@ $(document).ready(function() {
         if(!value.completed) {
             list1 = `<td style="border-bottom: 1px solid grey;text-align:center"><label><input type="checkbox"/><span></span></label></td>`;
         }
-        list += `<tr>
+        list += `<tr class="listItems">
                     <td style="border-bottom: 1px solid grey;text-align:center">${value.id}</td>
                     <td style="border-bottom: 1px solid grey;text-align:left">${value.title}</td>
                     ${list1}
@@ -49,8 +49,16 @@ $(document).ready(function() {
 
     // checking for task completions
     let taskCheck = () => {$("input").on("change", () => {
-        $("input:focus").prop("disabled","disabled");
-        ++clicks;
+        // $("input:focus").prop("checked","checked");
+        if($("input:focus").attr("checked")) {
+            $("input:focus").removeAttr("checked");
+            clicks--;
+        }
+        else {
+            $("input:focus").attr("checked","checked");
+            clicks++;
+        }
+        // ++clicks;
         var promiseAlert = new Promise( (resolve,reject) => {
             if (clicks == 5) {
                 resolve(`Congratulations!! Completed ${clicks} tasks!`);
