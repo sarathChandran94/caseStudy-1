@@ -3,16 +3,17 @@
     var form = $('#myForm > input');
 
     form.on("focus", () => {form[0].style.borderBottom = "";form[1].style.borderBottom = "";$(".helper-text").html("")});
-    var login = (callback) => {
-        myform.attr('action','main_page.html');
-        myform.attr('onsubmit','return validate()');
-        callback();
+
+    var login = () => {
+        myform.attr('action','./main_page.html');
     }
 
-    var validate = () => {
+
+    var validate = (callback) => {
         $(".helper-text").html("");
         if(form[0].value == "admin" && form[1].value == 12345) {
             $(".helper-text").html("Good").css("color","green");
+            callback();
             return true;
         }
         if(form[0].value == "") {
@@ -37,4 +38,5 @@
         }
     }
 
-    $("button").on("click", () => login(validate));
+
+    $(myform).on("submit", () => validate(login));
